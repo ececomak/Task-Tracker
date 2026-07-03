@@ -6,9 +6,7 @@ Bu proje; frontend, backend, veritabanı, Docker ve Git/GitHub kullanımını u�
 
 ## Projenin Ekran Görüntüsü
 
-```md
-![Mini Görev Takip Sistemi](./docs/screenshot.png)
-```
+<img width="2522" height="2164" alt="screenshot" src="https://github.com/user-attachments/assets/606e7586-ac1c-41cb-800a-3ca1d85bb487" />
 
 ## Kullanılan Teknolojiler
 
