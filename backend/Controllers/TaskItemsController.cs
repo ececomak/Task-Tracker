@@ -39,36 +39,46 @@ public class TaskItemsController : ControllerBase
         return Ok(task);
     }
 
-    [HttpPost]
-    public async Task<ActionResult<TaskItem>> Create(TaskItem taskItem)
+[HttpPost]
+public async Task<ActionResult<TaskItem>> Create(TaskItem taskItem)
+{
+    taskItem.Id = 0;
+    taskItem.CreatedAt = DateTime.UtcNow;
+    taskItem.IsCompleted = false;
+
+    if (string.IsNullOrWhiteSpace(taskItem.Priority))
     {
-        taskItem.Id = 0;
-        taskItem.CreatedAt = DateTime.UtcNow;
-
-        _context.TaskItems.Add(taskItem);
-        await _context.SaveChangesAsync();
-
-        return CreatedAtAction(nameof(GetById), new { id = taskItem.Id }, taskItem);
+        taskItem.Priority = "Medium";
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, TaskItem updatedTask)
+    _context.TaskItems.Add(taskItem);
+    await _context.SaveChangesAsync();
+
+    return CreatedAtAction(nameof(GetById), new { id = taskItem.Id }, taskItem);
+}
+
+[HttpPut("{id}")]
+public async Task<IActionResult> Update(int id, TaskItem updatedTask)
+{
+    var task = await _context.TaskItems.FindAsync(id);
+
+    if (task == null)
     {
-        var task = await _context.TaskItems.FindAsync(id);
-
-        if (task == null)
-        {
-            return NotFound();
-        }
-
-        task.Title = updatedTask.Title;
-        task.Description = updatedTask.Description;
-        task.IsCompleted = updatedTask.IsCompleted;
-
-        await _context.SaveChangesAsync();
-
-        return NoContent();
+        return NotFound();
     }
+
+    task.Title = updatedTask.Title;
+    task.Description = updatedTask.Description;
+    task.IsCompleted = updatedTask.IsCompleted;
+    task.Priority = string.IsNullOrWhiteSpace(updatedTask.Priority)
+        ? "Medium"
+        : updatedTask.Priority;
+    task.DueDate = updatedTask.DueDate;
+
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)

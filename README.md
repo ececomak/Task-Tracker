@@ -1,8 +1,14 @@
-# Mini Task Tracker POC
+# Görev Takip Sistemi
 
-Bu proje, 3 günlük araştırma ve POC çalışması kapsamında hazırlanmış uçtan uca küçük bir full stack örnektir.
+Görev Takip Sistemi, görevlerin oluşturulmasını, öncelik ve son tarih bilgisiyle takip edilmesini, tamamlanma durumlarının güncellenmesini sağlayan full stack bir POC projesidir.
 
-Projede React, TypeScript ve Tailwind CSS ile basit bir frontend arayüzü; .NET Web API ile CRUD işlemleri yapan bir backend servisi; PostgreSQL ile veritabanı katmanı hazırlanmıştır. Tüm servisler Docker Compose ile birlikte çalışacak şekilde yapılandırılmıştır.
+Bu proje; frontend, backend, veritabanı, Docker ve Git/GitHub kullanımını uçtan uca küçük bir uygulama üzerinde birleştirmek amacıyla geliştirilmiştir.
+
+## Projenin Ekran Görüntüsü
+
+```md
+![Mini Görev Takip Sistemi](./docs/screenshot.png)
+```
 
 ## Kullanılan Teknolojiler
 
@@ -14,22 +20,20 @@ Projede React, TypeScript ve Tailwind CSS ile basit bir frontend arayüzü; .NET
 - PostgreSQL
 - Docker
 - Docker Compose
-- Git / GitHub
-
-## Proje Özeti
-
-Mini Task Tracker uygulaması üzerinden görev kayıtları oluşturulabilir, listelenebilir, tamamlandı olarak işaretlenebilir ve silinebilir.
-
-Bu örnek ile frontend, backend ve veritabanı katmanlarının birlikte çalışması amaçlanmıştır.
 
 ## Özellikler
 
-- Görev ekleme
+- Yeni görev oluşturma
 - Görevleri listeleme
-- Görev durumunu güncelleme
+- Görev durumunu tamamlama veya aktif hale getirme
+- Görev düzenleme
 - Görev silme
+- Öncelik seviyesi belirleme
+- Son tarih seçme
+- Geçmiş tarih seçimini engelleme
+- Görevleri duruma ve önceliğe göre filtreleme
 - PostgreSQL üzerinde veri saklama
-- Docker Compose ile tek komutla çalıştırma
+- Docker Compose ile tüm projeyi tek komutla çalıştırma
 
 ## Proje Yapısı
 
@@ -47,4 +51,51 @@ mini-task-tracker-poc
 │   ├── Dockerfile
 │   └── package.json
 ├── docker-compose.yml
-└── README.md# Mini Task Tracker POC
+└── README.md
+```
+
+## Çalıştırma
+
+Projeyi çalıştırmak için Docker Desktop açıkken ana dizinde aşağıdaki komut çalıştırılır:
+
+```bash
+docker compose up --build
+```
+
+Frontend uygulaması:
+
+```text
+http://localhost:3000
+```
+
+Backend Swagger arayüzü:
+
+```text
+http://localhost:5001/swagger
+```
+
+Projeyi durdurmak için:
+
+```bash
+docker compose down
+```
+
+Veritabanı dahil tüm container verilerini sıfırlamak için:
+
+```bash
+docker compose down -v
+```
+
+## API Endpointleri
+
+```text
+GET     /api/TaskItems
+GET     /api/TaskItems/{id}
+POST    /api/TaskItems
+PUT     /api/TaskItems/{id}
+DELETE  /api/TaskItems/{id}
+```
+
+## Amaç
+
+Bu POC çalışmasının amacı; React, TypeScript, Tailwind CSS, .NET Web API, PostgreSQL, Docker Compose ve GitHub kullanımını bir araya getirerek uçtan uca çalışan küçük bir full stack uygulama geliştirmektir.

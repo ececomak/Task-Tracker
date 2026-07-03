@@ -10,5 +10,9 @@ public class TaskItem
 
     public bool IsCompleted { get; set; } = false;
 
+    public string Priority { get; set; } = "Medium";
+
+    public DateTime? DueDate { get; set; }
+
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

@@ -4,4 +4,16 @@
 
 body {
   margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.pastel-bg {
+  background-color: #fff8fc;
+  background-image:
+    radial-gradient(ellipse at 10% 15%, rgba(255, 214, 232, 0.55) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 10%, rgba(212, 236, 255, 0.5) 0%, transparent 45%),
+    radial-gradient(ellipse at 80% 85%, rgba(200, 245, 228, 0.45) 0%, transparent 50%),
+    radial-gradient(ellipse at 15% 80%, rgba(228, 212, 245, 0.4) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 244, 204, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 60% 30%, rgba(255, 228, 204, 0.3) 0%, transparent 40%);
 }
